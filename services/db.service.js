@@ -9,10 +9,17 @@ class DbService {
             password: process.env.DB_PASSWORD,
             port: process.env.DB_PORT,
         })
+    }
 
+    connect() {
         this.con.connect((err, dbresult) => {
             console.log('Connected to DATABASE')
         })
+        return this
+    }
+
+    async cursor(sql, sql_data) {
+        return await this.con.query(sql, sql_data)
     }
 }
 
